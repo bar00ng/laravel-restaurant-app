@@ -32,6 +32,7 @@
     </style>
 </head>
 <body>
+<div class="bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-700 flex items-center justify-center w-screen h-screen">
   <div class="w-full max-w-xs">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('auth') }}">
       @csrf
@@ -51,14 +52,15 @@
         <input class="shadow appearance-none border {{ $errors->has('password') ? 'border-red-500' : '' }} rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" name="password" placeholder="Password">
         @if($errors->has('password'))
           <p class="text-red-500 text-xs italic">{{ $errors->first('password') }}</p>
-        @endif
-      </div>
-      <div class="flex items-center justify-center">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+          @endif
+        </div>
+        <div class="flex items-center justify-center">
+          <button class="bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-700 hover:bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
           Sign In
         </button>
       </div>
     </form>
   </div>
+</div>
 </body>
 </html>

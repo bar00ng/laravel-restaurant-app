@@ -13,19 +13,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('/formTambah', 'App\Http\Controllers\ProductsController@tampilFormTambah')->name("formTambah");
+
+  Route::post('/storeData', 'App\Http\Controllers\ProductsController@store')->name("storeData");
+
+  Route::delete('/hapusData/{id}','App\Http\Controllers\ProductsController@deleteData')->name("hapusData");
+
+  Route::get('/formEdit/{id}', 'App\Http\Controllers\ProductsController@tampilFormEdit')->name("formEdit");
+
+  Route::patch('/patchData/{id}', 'App\Http\Controllers\ProductsController@patch')->name("patchData");
+
+  Route::get('listOrder', 'App\Http\Controllers\OrderController@index')->name('listOrder');
+
+  Route::patch('update/{id}', 'App\Http\Controllers\OrderController@update')->name('updateStatus');
+
+  Route::delete('delete/{id}', 'App\Http\Controllers\OrderController@delete')->name('deleteOrder');
+});
+
 Route::get('/', 'App\Http\Controllers\ProductsController@index')->name("home");
-
-Route::get('/formTambah', 'App\Http\Controllers\ProductsController@tampilFormTambah')->name("formTambah");
-
-Route::post('/storeData', 'App\Http\Controllers\ProductsController@store')->name("storeData");
-
-Route::delete('/hapusData/{id}','App\Http\Controllers\ProductsController@deleteData')->name("hapusData");
-
-Route::get('/formEdit/{id}', 'App\Http\Controllers\ProductsController@tampilFormEdit')->name("formEdit");
-
-Route::patch('/patchData/{id}', 'App\Http\Controllers\ProductsController@patch')->name("patchData");
-
-Route::get('/addToCart/{id}', 'App\Http\Controllers\CartController@addToCart')->name("addToCart");
 
 Route::get('/addToCart/{id}', 'App\Http\Controllers\CartController@addToCart')->name("addToCart");
 
@@ -36,12 +42,6 @@ Route::patch('update-cart', 'App\Http\Controllers\CartController@update')->name(
 Route::delete('deleteFromCart', 'App\Http\Controllers\CartController@remove')->name("remove.from.cart");
 
 Route::post('storeCart', 'App\Http\Controllers\CartController@storeCart')->name('storeCart');
-
-Route::get('listOrder', 'App\Http\Controllers\OrderController@index')->name('listOrder');
-
-Route::patch('update/{id}', 'App\Http\Controllers\OrderController@update')->name('updateStatus');
-
-Route::delete('delete/{id}', 'App\Http\Controllers\OrderController@delete')->name('deleteOrder');
 
 Route::get('login', 'App\Http\Controllers\AuthController@index')->name('login');
 
