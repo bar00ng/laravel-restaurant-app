@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ env('APP_NAME') }}</title>
+    <title>{{ env('APP_NAME') !== null ? env('APP_NAME') : 'Resto Sumber Bahagia'}}</title>
     <!-- Tailwindcss CDN Links -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -32,10 +32,10 @@
     </style>
 </head>
 <body>
-    <header class="bg-{{ env('APP_THEME') }}-700 w-screen p-2.5 flex items-center justify-between">
+    <header class="bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-700 w-screen p-2.5 flex items-center justify-between">
         <div>&nbsp</div>
         
-        <h1 class="text-4xl text-white" style="font-family: 'Pacifico', cursive;">{{ env('APP_NAME') }}</h1>
+        <h1 class="text-4xl text-white" style="font-family: 'Pacifico', cursive;">{{ env('APP_NAME') !== null ? env('APP_NAME') : 'Resto Sumber Bahagia'}}</h1>
 
         @if (Route::currentRouteName() == 'cart')
             <div>&nbsp</div>

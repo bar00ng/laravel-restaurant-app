@@ -47,7 +47,7 @@
     </div>
 
     <div class="mt-4 text-center">
-      <input type="submit" value="SAVE" class="bg-{{ env('APP_THEME') }}-700 hover:bg-{{ env('APP_THEME') }}-900 text-white font-bold py-2 w-full cursor-pointer rounded focus:outline-none focus:shadow-outline">
+      <input type="submit" value="SAVE" class="bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-700 hover:bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-900 text-white font-bold py-2 w-full cursor-pointer rounded focus:outline-none focus:shadow-outline">
     </div>
   </form>
 
