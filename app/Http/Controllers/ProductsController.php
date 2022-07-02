@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
     public function index(){
-        $products = Products::where('isActive',1)->orderBy('name')->get();
-
+        if (!Auth::check()) {
+            $products = Products::where('isActive',1)->orderBy('name')->get();
+        } else {
+            $products = Products::orderBy('name')->get();
+        }
         return view('Dashboard',['products' => $products]);
     }
 
@@ -41,10 +45,11 @@ class ProductsController extends Controller
 
     public function patch(Request $r, $id) {
         $validated = $r->validate([
-            'name' => 'required|unique:App\Models\Products,name',
+            'name' => 'required',
             'price' => 'required|integer',
             'category_id' => 'required'
         ]);
+        $validated['isActive'] = $r->isActive;
 
         $product = Products::where('id',$id)->update($validated);
         return redirect('')->with('Message', 'Berhasil Diubah');

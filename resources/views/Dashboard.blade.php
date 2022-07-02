@@ -3,7 +3,7 @@
         <!-- Menu Header -->
         <div class="flex justify-between items-center sm:w-4/5 sm:mx-auto">
             <h1 class="text-2xl font-semibold tracking-widest">MENU</h1>
-            <a class="bg-green-500 rounded-lg text-white p-2 font-bold tracking-wide hover:bg-green-700" href={{ route('formTambah') }}>TAMBAH</a>
+            <a class="bg-green-500 rounded-lg text-white p-2 font-bold tracking-wide hover:bg-green-700 {{ !Auth::check() ? 'hidden' : '' }}" href={{ route('formTambah') }}>TAMBAH</a>
         </div>
 
         <!-- Display Menu -->
@@ -31,7 +31,7 @@
 
                             <div class="flex items-center justify-center">
                                 <!-- Active jika Admin -->
-                                <form action="{{ route('hapusData', $product->id) }}" method="POST" class="hidden">
+                                <form action="{{ route('hapusData', $product->id) }}" method="POST" class="{{ !Auth::check() ? 'hidden' : '' }}">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" title="Hapus">
@@ -40,12 +40,12 @@
                                 </form>
 
                                 <!-- Active jika admin -->
-                                <a href="{{ route('formEdit', $product->id) }}" class="hidden">
+                                <a href="{{ route('formEdit', $product->id) }}" class="{{ !Auth::check() ? 'hidden' : '' }}">
                                     <i class="fa-solid fa-pen-to-square text-yellow-400 hover:text-yellow-900 text-xl cursor-pointer"></i>
                                 </a>  
                                 
                                 <!-- Active jika user -->
-                                <a href="{{ route('addToCart', $product->id) }}">
+                                <a href="{{ route('addToCart', $product->id) }}" class="{{ Auth::check() ? 'hidden' : '' }}">
                                     <i class="fa-solid fa-cart-plus text-green-400 hover:text-green-900 text-xl cursor-pointer"></i>
                                 </a> 
                             </div>

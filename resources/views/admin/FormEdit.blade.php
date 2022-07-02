@@ -46,6 +46,20 @@
       @endif
     </div>
 
+    <div class="mb-4">
+      <label class="block text-gray-700 text-lg font-bold mb-2" for="name">Aktif</label>
+      <div class="flex">
+        <div class="flex items-center mr-4">
+          <input id="inline-radio" type="radio" value="1" name="isActive" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ $product->isActive == '1' ? 'checked' : ''}}>
+          <label for="inline-radio" class="ml-2 font-medium text-gray-900">Yes</label>
+        </div>
+
+        <div class="flex items-center mr-4">
+          <input id="inline-radio" type="radio" value="0" name="isActive" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ $product->isActive == '0' ? 'checked' : ''}}>
+          <label for="inline-radio" class="ml-2 font-medium text-gray-900">No</label>
+      </div>
+    </div>
+
     <div class="mt-4 text-center">
       <input type="submit" value="SAVE" class="bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-700 hover:bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-900 text-white font-bold py-2 w-full cursor-pointer rounded focus:outline-none focus:shadow-outline">
     </div>

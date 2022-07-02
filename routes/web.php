@@ -42,3 +42,9 @@ Route::get('listOrder', 'App\Http\Controllers\OrderController@index')->name('lis
 Route::patch('update/{id}', 'App\Http\Controllers\OrderController@update')->name('updateStatus');
 
 Route::delete('delete/{id}', 'App\Http\Controllers\OrderController@delete')->name('deleteOrder');
+
+Route::get('login', 'App\Http\Controllers\AuthController@index')->name('login');
+
+Route::post('auth', 'App\Http\Controllers\AuthController@login')->name('auth');
+
+Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');

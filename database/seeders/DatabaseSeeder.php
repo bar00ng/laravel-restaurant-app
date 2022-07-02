@@ -35,5 +35,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Products::create(['name' => 'Nasi Uduk','price' => '20000','category_id'=>'5']);
         \App\Models\Products::create(['name' => 'Pudding Cokelat','price' => '20000','category_id'=>'6']);
         \App\Models\Products::create(['name' => 'Black Forest','price' => '20000','category_id'=>'6']);
+
+        \App\Models\User::create(['name' => 'Zaky', 'username' => 'admin', 'email' => 'admin@example.com', 'password' => bcrypt('admin123')]);
     }
 }

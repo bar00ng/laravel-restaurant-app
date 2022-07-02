@@ -33,7 +33,18 @@
 </head>
 <body>
     <header class="bg-{{ env('APP_THEME') !== null ? env('APP_THEME') : 'blue'}}-700 w-screen p-2.5 flex items-center justify-between">
-        <div>&nbsp</div>
+        <div class="flex items-center {{ !Auth::check() ? 'hidden' : '' }}">
+            <a href="{{ route('logout') }}" class="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-5">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+            <span class="text-white uppercase">
+                {{ Auth::check() ? Auth::user()->name : '' }}
+            </span>
+        </div>
+
+        <div class="{{ Auth::check() ? 'hidden' : '' }}">
+            <a href="{{ route('login') }}" class="bg-green-500 text-white hover:bg-green-900 cursor-pointer p-2.5 rounded-lg">LOGIN</a>
+        </div>
         
         <h1 class="text-4xl text-white" style="font-family: 'Pacifico', cursive;">{{ env('APP_NAME') !== null ? env('APP_NAME') : 'Resto Sumber Bahagia'}}</h1>
 
@@ -41,7 +52,7 @@
             <div>&nbsp</div>
         @else
             <!-- Active jika user -->
-            <div class="relative cursor-pointer mr-2">
+            <div class="relative cursor-pointer mr-2 {{ Auth::check() ? 'hidden' : '' }}">
                 <a href="{{ route('cart') }}">
                     <i class="fa-solid fa-cart-shopping text-xl text-white"></i>
                 </a>
@@ -49,7 +60,7 @@
             </div>
 
             <!-- Active jika admin -->
-            <a href="{{route('listOrder')}}" class="text-white font-semibold">ORDERS</a>
+            <a href="{{route('listOrder')}}" class="text-white font-semibold {{ !Auth::check() ? 'hidden' : '' }}">ORDERS</a>
         @endif
     </header>
 
